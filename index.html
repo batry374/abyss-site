@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abyss Client | Premium Minecraft DLC</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <!-- Background Patterns -->
+    <div class="bg-noise"></div>
+    <div class="bg-gradient"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">ABYSS</div>
+            <ul class="nav-links">
+                <li><a href="#features">Возможности</a></li>
+                <li><a href="#pricing">Стоимость</a></li>
+                <li><a href="#stats">Статистика</a></li>
+                <li id="auth-nav"><a href="javascript:void(0)" class="btn-primary" onclick="openAuth()">Войти</a></li>
+                <li id="profile-nav" style="display: none;"><a href="javascript:void(0)" class="btn-primary" onclick="toggleCabinet()">Кабинет</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero container">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="glitch" data-text="ABYSS CLIENT">ABYSS CLIENT</h1>
+                <p class="hero-subtitle">Доминируй. Побеждай. Оставайся незамеченным.</p>
+                <div class="hero-actions">
+                    <a href="#pricing" class="btn-primary">Купить сейчас</a>
+                    <a href="#features" class="btn-secondary">Узнать больше</a>
+                </div>
+            </div>
+            <div class="hero-gui" data-aos="fade-left" data-aos-delay="200">
+                <div class="gui-window">
+                    <div class="gui-header">
+                        <div class="gui-dots"><span></span><span></span><span></span></div>
+                        <div class="gui-title">ABYSS CLICKGUI</div>
+                    </div>
+                    <div class="gui-content">
+                        <div class="gui-sidebar">
+                            <div class="gui-tab active">⚔️ Combat</div>
+                            <div class="gui-tab">🏃 Movement</div>
+                            <div class="gui-tab">👁️ Visuals</div>
+                            <div class="gui-tab">⚙️ Settings</div>
+                        </div>
+                        <div class="gui-modules">
+                            <div class="gui-module active">
+                                <span>KillAura</span>
+                                <div class="gui-toggle"></div>
+                            </div>
+                            <div class="gui-module">
+                                <span>AutoTotem</span>
+                                <div class="gui-toggle"></div>
+                            </div>
+                            <div class="gui-module active">
+                                <span>Velocity</span>
+                                <div class="gui-toggle"></div>
+                            </div>
+                            <div class="gui-module">
+                                <span>TargetStrafe</span>
+                                <div class="gui-toggle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gui-footer">
+                        <span>Connected to: Localhost</span>
+                        <span>FPS: 240</span>
+                    </div>
+                </div>
+                <div class="gui-glow"></div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Наши возможности</h2>
+                <p>Лучшие технологии для вашего превосходства</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">⚔️</div>
+                    <h3>Advanced Combat</h3>
+                    <p>KillAura с умным таргетингом, AutoTotem и HitBoxes, которые обходят лучшие анти-читы.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">🏃</div>
+                    <h3>Infinite Motion</h3>
+                    <p>Speed, Fly и Glide режимы, оптимизированные под топовые сервера (HolyWorld, ReallyWorld).</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">👁️</div>
+                    <h3>Exquisite Visuals</h3>
+                    <p>Кастомизируемые ESP, Tracers и уникальный интерфейс в стиле Monochrome.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Ghost Stealth</h3>
+                    <p>Мощные обходы (Bypass 360), которые делают вашу игру максимально естественной для модерации.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="pricing container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Выбери свой план</h2>
+                <p>Доступ к лучшим модулям по выгодной цене</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card" data-aos="fade-right">
+                    <div class="price-header">
+                        <h3>30 Дней</h3>
+                        <div class="price">99₽<span>/мес</span></div>
+                    </div>
+                    <ul class="price-features">
+                        <li>Полный доступ на 30 дней</li>
+                        <li>Все базовые модули</li>
+                        <li>Обходы AntiCheat</li>
+                        <li>Поддержка 24/7</li>
+                    </ul>
+                    <button class="btn-buy">Выбрать</button>
+                </div>
+                <div class="price-card featured" data-aos="fade-up">
+                    <div class="badge">Выгодно</div>
+                    <div class="price-header">
+                        <h3>90 Дней</h3>
+                        <div class="price">199₽<span>/3 мес</span></div>
+                    </div>
+                    <ul class="price-features">
+                        <li>Полный доступ на 90 дней</li>
+                        <li>Beta функции и обновления</li>
+                        <li>Advanced Bypass 360</li>
+                        <li>Приоритетная поддержка</li>
+                    </ul>
+                    <button class="btn-buy">Выбрать</button>
+                </div>
+                <div class="price-card" data-aos="fade-left">
+                    <div class="price-header">
+                        <h3>Lifetime</h3>
+                        <div class="price">399₽<span>/навсегда</span></div>
+                    </div>
+                    <ul class="price-features">
+                        <li>Вечный доступ ко всему</li>
+                        <li>Все будущие обновления</li>
+                        <li>Личный менеджер</li>
+                        <li>Роль в Discord</li>
+                    </ul>
+                    <button class="btn-buy">Выбрать</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats" class="stats container">
+            <div class="stats-grid">
+                <div class="stat-item" data-aos="counter">
+                    <div class="stat-num">15k+</div>
+                    <div class="stat-label">Пользователей</div>
+                </div>
+                <div class="stat-item" data-aos="counter">
+                    <div class="stat-num">100+</div>
+                    <div class="stat-label">Функций</div>
+                </div>
+                <div class="stat-item" data-aos="counter">
+                    <div class="stat-num">24/7</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuth()">&times;</span>
+            
+            <!-- Login Form -->
+            <div id="login-form">
+                <h2>Авторизация</h2>
+                <div class="input-group">
+                    <input type="text" id="login-id" placeholder="Никнейм или Email">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="login-pass" placeholder="Пароль">
+                </div>
+                <button class="btn-primary w-100" onclick="handleLogin()">Войти</button>
+                <p class="auth-switch">Нет аккаунта? <a href="javascript:void(0)" onclick="switchAuth('reg')">Зарегистрироваться</a></p>
+            </div>
+
+            <!-- Register Form -->
+            <div id="reg-form" style="display: none;">
+                <h2>Регистрация</h2>
+                <div class="input-group">
+                    <input type="text" id="reg-user" placeholder="Никнейм аккаунта">
+                </div>
+                <div class="input-group">
+                    <input type="email" id="reg-email" placeholder="Email адрес">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="reg-pass" placeholder="Придумайте пароль">
+                </div>
+                <button class="btn-primary w-100" onclick="handleRegister()">Создать аккаунт</button>
+                <p class="auth-switch">Уже есть аккаунт? <a href="javascript:void(0)" onclick="switchAuth('login')">Войти</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cabinet Modal -->
+    <div id="cabinet-modal" class="modal">
+        <div class="modal-content cabinet-modal-content">
+            <span class="close" onclick="closeCabinet()">&times;</span>
+            <h2>Личный кабинет</h2>
+            <p class="welcome-text">Добро пожаловать, <span id="user-name-display">Пользователь</span>!</p>
+            
+            <div class="cabinet-info">
+                <div class="info-item">
+                    <span class="label">Статус подписки:</span>
+                    <span id="sub-status" class="sub-info">Загрузка...</span>
+                </div>
+                <div id="sub-date-container" class="info-item" style="display: none;">
+                    <span class="label">Действует до:</span>
+                    <span id="sub-date" class="sub-date">---</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Ваша почта:</span>
+                    <span id="user-email-display" class="value">---</span>
+                </div>
+            </div>
+
+            <div class="cabinet-actions">
+                <div id="key-activation-area" style="margin-bottom: 1.5rem;">
+                    <div class="input-group" style="margin-bottom: 0.5rem;">
+                        <input type="text" id="activate-key-input" placeholder="Введите ключ активации">
+                    </div>
+                    <button class="btn-primary w-100" onclick="handleActivateKey()">Активировать ключ</button>
+                </div>
+                <button id="admin-btn" class="btn-primary w-100" style="display: none; background: #1a0a0a; border-color: #400; margin-bottom: 1rem;" onclick="openAdmin()">Админ-панель</button>
+                <button class="btn-secondary w-100" onclick="logout()">Выйти из аккаунта</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div id="admin-modal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <span class="close" onclick="closeAdmin()">&times;</span>
+            <h2>Админ-панель</h2>
+            
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="switchAdminTab('keys')">Ключи</button>
+                <button class="admin-tab" onclick="switchAdminTab('users')">Пользователи</button>
+            </div>
+
+            <div id="admin-keys-tab" class="admin-section">
+                <h3>Генерация ключей</h3>
+                <div class="admin-gen-row" style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                    <select id="key-type" style="background: #111; color: white; border: 1px solid #333; padding: 0.5rem; border-radius: 4px; flex: 1;">
+                        <option value="30">30 Дней</option>
+                        <option value="90">90 Дней</option>
+                        <option value="36500">Lifetime</option>
+                    </select>
+                    <button class="btn-primary" onclick="generateKey()" style="flex: 1;">Создать ключ</button>
+                </div>
+                <div class="key-list-container" style="max-height: 200px; overflow-y: auto; background: #050505; border: 1px solid #222; border-radius: 4px; padding: 1rem;">
+                    <table style="width: 100%; font-size: 0.8rem; text-align: left;">
+                        <thead>
+                            <tr>
+                                <th>Ключ</th>
+                                <th>Тип</th>
+                                <th>Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-keys-list"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="admin-users-tab" class="admin-section" style="display: none;">
+                <h3>Активные подписки</h3>
+                <div class="user-list-container" style="max-height: 250px; overflow-y: auto; background: #050505; border: 1px solid #222; border-radius: 4px; padding: 1rem;">
+                    <table style="width: 100%; font-size: 0.8rem; text-align: left;">
+                        <thead>
+                            <tr>
+                                <th>Никнейм</th>
+                                <th>Почта</th>
+                                <th>Срок</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-users-list"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-left">
+                <div class="logo">ABYSS</div>
+                <p>Ваш лучший спутник в мире Minecraft.</p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#features">Функции</a></li>
+                        <li><a href="#pricing">Цены</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Правовая информация</h4>
+                    <ul>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                        <li><a href="#">Условия использования</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 Abyss Client. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // API Config
+        const API_URL = 'http://localhost:5000/api';
+        let currentUser = JSON.parse(localStorage.getItem('abyss_session'));
+
+        async function updateUI() {
+            if (currentUser) {
+                document.querySelectorAll('#user-name-display').forEach(el => el.innerText = currentUser.username);
+                document.querySelectorAll('#user-email-display').forEach(el => el.innerText = currentUser.email);
+                
+                const subStatus = document.getElementById('sub-status');
+                const subDate = document.getElementById('sub-date');
+                const subDateContainer = document.getElementById('sub-date-container');
+                
+                if (currentUser.hasSubscription) {
+                    subStatus.innerText = 'АКТИВНА';
+                    subStatus.className = 'sub-info active';
+                    subDate.innerText = new Date(currentUser.expiryDate).toLocaleDateString();
+                    subDateContainer.style.display = 'flex';
+                } else {
+                    subStatus.innerText = 'ОТСУТСТВУЕТ';
+                    subStatus.className = 'sub-info inactive';
+                    subDateContainer.style.display = 'none';
+                }
+
+                if (currentUser.role === 'admin') {
+                    document.getElementById('admin-btn').style.display = 'block';
+                }
+            } else {
+                document.getElementById('cabinet-modal').style.display = 'none';
+                document.getElementById('admin-modal').style.display = 'none';
+            }
+        }
+
+        async function handleRegister() {
+            const username = document.getElementById('reg-user').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-pass').value;
+
+            if (!username || !email || !password) return alert('Заполните все поля!');
+
+            try {
+                const res = await fetch(`${API_URL}/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    alert('Регистрация успешна! Теперь войдите.');
+                    switchAuth('login');
+                } else {
+                    alert(data.error);
+                }
+            } catch (e) { alert('Ошибка сервера'); }
+        }
+
+        async function handleLogin() {
+            const loginId = document.getElementById('login-id').value;
+            const password = document.getElementById('login-pass').value;
+
+            try {
+                const res = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ loginId, password })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    currentUser = data;
+                    localStorage.setItem('abyss_session', JSON.stringify(data));
+                    closeAuth();
+                    updateUI();
+                    toggleCabinet();
+                } else {
+                    alert(data.error);
+                }
+            } catch (e) { alert('Ошибка сервера'); }
+        }
+
+        async function handleActivateKey() {
+            const keycode = document.getElementById('activate-key-input').value;
+            if (!keycode) return;
+
+            try {
+                const res = await fetch(`${API_URL}/activate-key`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: currentUser.username, keycode })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    currentUser = data;
+                    localStorage.setItem('abyss_session', JSON.stringify(data));
+                    alert('Ключ успешно активирован!');
+                    updateUI();
+                } else {
+                    alert(data.error);
+                }
+            } catch (e) { alert(data.error || 'Ошибка сервера'); }
+        }
+
+        async function openAdmin() {
+            document.getElementById('admin-modal').style.display = 'flex';
+            await renderAdminKeys();
+        }
+
+        async function generateKey() {
+            const days = document.getElementById('key-type').value;
+            try {
+                await fetch(`${API_URL}/admin/gen-key`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ adminUser: currentUser.username, days })
+                });
+                await renderAdminKeys();
+            } catch (e) { alert('Ошибка'); }
+        }
+
+        async function renderAdminKeys() {
+            try {
+                const res = await fetch(`${API_URL}/admin/keys/${currentUser.username}`);
+                const keys = await res.json();
+                const list = document.getElementById('admin-keys-list');
+                list.innerHTML = keys.map(k => `
+                    <tr>
+                        <td><code>${k.code}</code></td>
+                        <td>${k.days}д</td>
+                        <td style="color: ${k.used ? '#ff4444' : '#00ff88'}">${k.used ? 'Использован (' + k.usedBy + ')' : 'Свободен'}</td>
+                    </tr>
+                `).join('');
+            } catch (e) { console.error('Error fetching keys'); }
+        }
+
+        function switchAdminTab(tab) {
+            document.getElementById('admin-keys-tab').style.display = tab === 'keys' ? 'block' : 'none';
+            document.getElementById('admin-users-tab').style.display = tab === 'users' ? 'block' : 'none';
+            document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
+            if (event) event.target.classList.add('active');
+        }
+
+        function toggleCabinet() {
+            if (currentUser) {
+                document.getElementById('cabinet-modal').style.display = 'flex';
+                updateUI();
+            }
+        }
+
+        function openAuth() { document.getElementById('auth-modal').style.display = 'flex'; }
+        function closeAuth() { document.getElementById('auth-modal').style.display = 'none'; }
+        function closeCabinet() { document.getElementById('cabinet-modal').style.display = 'none'; }
+        function closeAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
+
+        function switchAuth(type) {
+            document.getElementById('login-form').style.display = type === 'reg' ? 'none' : 'block';
+            document.getElementById('reg-form').style.display = type === 'reg' ? 'block' : 'none';
+        }
+
+        function logout() {
+            localStorage.removeItem('abyss_session');
+            currentUser = null;
+            location.reload();
+        }
+
+        updateUI();
+
+        window.onclick = function(event) {
+            const authModal = document.getElementById('auth-modal');
+            const cabModal = document.getElementById('cabinet-modal');
+            const admModal = document.getElementById('admin-modal');
+            if (event.target == authModal) closeAuth();
+            if (event.target == cabModal) closeCabinet();
+            if (event.target == admModal) closeAdmin();
+        }
+    </script>
+</body>
+</html>
