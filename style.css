@@ -821,6 +821,40 @@ input[type="checkbox"] {
     color: white;
 }
 
+/* FunPay Button styling */
+.btn-funpay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    width: 100%;
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-funpay:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.05);
+}
+
+.btn-funpay svg {
+    transition: var(--transition);
+}
+
+.btn-funpay:hover svg {
+    transform: scale(1.1);
+}
+
 /* Responsive fixes */
 @media (max-width: 968px) {
     .hero {

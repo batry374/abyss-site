@@ -91,7 +91,7 @@
                         <li>Регулярные обновления</li>
                         <li>Приоритетная поддержка 24/7</li>
                     </ul>
-                    <button class="btn-buy">Выбрать</button>
+                    <button class="btn-buy" onclick="openPayment('30 Дней', '99₽', 'https://funpay.com/lots/offer?id=69078043')">Выбрать</button>
                 </div>
                 <div class="price-card featured" data-aos="fade-up">
                     <div class="badge">Выгодно</div>
@@ -106,7 +106,7 @@
                         <li>Регулярные обновления</li>
                         <li>Приоритетная поддержка 24/7</li>
                     </ul>
-                    <button class="btn-buy">Выбрать</button>
+                    <button class="btn-buy" onclick="openPayment('90 Дней', '199₽', 'https://funpay.com/lots/offer?id=69262501')">Выбрать</button>
                 </div>
                 <div class="price-card" data-aos="fade-left">
                     <div class="price-header">
@@ -120,7 +120,7 @@
                         <li>Регулярные обновления</li>
                         <li>Приоритетная поддержка 24/7</li>
                     </ul>
-                    <button class="btn-buy">Выбрать</button>
+                    <button class="btn-buy" onclick="openPayment('Lifetime', '399₽', 'https://funpay.com/lots/offer?id=69262568')">Выбрать</button>
                 </div>
             </div>
         </section>
@@ -216,6 +216,29 @@
                 <button id="admin-btn" class="btn-primary w-100" style="display: none; background: #1a0a0a; border-color: #400; margin-bottom: 1rem;" onclick="openAdmin()">Админ-панель</button>
                 <button class="btn-secondary w-100" onclick="logout()">Выйти из аккаунта</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content" style="max-width: 450px; text-align: center;">
+            <span class="close" onclick="closePayment()">&times;</span>
+            <div class="payment-badge" style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem;">Покупка подписки</div>
+            <h2 id="payment-plan-name" style="font-size: 2rem; margin-bottom: 0.2rem; font-weight: 800;">30 Дней</h2>
+            <div id="payment-plan-price" style="font-size: 1.25rem; color: #a0a0a0; margin-bottom: 2rem; font-weight: 600;">99₽</div>
+            
+            <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem; margin-bottom: 1.5rem;">
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; font-weight: 500;">Способы оплаты</p>
+                <a id="payment-funpay-link" href="#" target="_blank" class="btn-funpay">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    Купить через FunPay
+                </a>
+            </div>
+
+            <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin-top: 1.5rem;">
+                После оплаты продавец передаст вам ключ активации.<br>
+                Введите его в <a href="javascript:void(0)" onclick="closePayment(); toggleCabinet();" style="color: white; text-decoration: underline;">Личном кабинете</a> для мгновенного получения подписки.
+            </p>
         </div>
     </div>
 
@@ -499,6 +522,17 @@
         function closeCabinet() { document.getElementById('cabinet-modal').style.display = 'none'; }
         function closeAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
 
+        function openPayment(planName, price, url) {
+            document.getElementById('payment-plan-name').innerText = planName;
+            document.getElementById('payment-plan-price').innerText = price;
+            document.getElementById('payment-funpay-link').href = url;
+            document.getElementById('payment-modal').style.display = 'flex';
+        }
+
+        function closePayment() {
+            document.getElementById('payment-modal').style.display = 'none';
+        }
+
         function switchAuth(type) {
             document.getElementById('login-form').style.display = type === 'reg' ? 'none' : 'block';
             document.getElementById('reg-form').style.display = type === 'reg' ? 'block' : 'none';
@@ -517,9 +551,11 @@
             const authModal = document.getElementById('auth-modal');
             const cabModal = document.getElementById('cabinet-modal');
             const admModal = document.getElementById('admin-modal');
+            const payModal = document.getElementById('payment-modal');
             if (event.target == authModal) closeAuth();
             if (event.target == cabModal) closeCabinet();
             if (event.target == admModal) closeAdmin();
+            if (event.target == payModal) closePayment();
         }
     </script>
 </body>
