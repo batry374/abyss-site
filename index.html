@@ -158,6 +158,10 @@
                 <div class="input-group">
                     <input type="password" id="login-pass" placeholder="Пароль">
                 </div>
+                <div class="remember-me-group" style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
+                    <input type="checkbox" id="remember-me" checked>
+                    <label for="remember-me">Запомнить меня</label>
+                </div>
                 <button class="btn-primary w-100" onclick="handleLogin()">Войти</button>
                 <p class="auth-switch">Нет аккаунта? <a href="javascript:void(0)" onclick="switchAuth('reg')">Зарегистрироваться</a></p>
             </div>
@@ -321,10 +325,17 @@
 
         // API Config
         const API_URL = 'https://abyss-backend-tk1j.onrender.com/api';
-        let currentUser = JSON.parse(localStorage.getItem('abyss_session'));
+        let currentUser = JSON.parse(localStorage.getItem('abyss_session') || sessionStorage.getItem('abyss_session'));
 
         async function updateUI() {
+            const authNav = document.getElementById('auth-nav');
+            const profileNav = document.getElementById('profile-nav');
+            const adminBtn = document.getElementById('admin-btn');
+
             if (currentUser) {
+                if (authNav) authNav.style.display = 'none';
+                if (profileNav) profileNav.style.display = 'block';
+
                 document.querySelectorAll('#user-name-display').forEach(el => el.innerText = currentUser.username);
                 document.querySelectorAll('#user-email-display').forEach(el => el.innerText = currentUser.email);
                 
@@ -332,21 +343,27 @@
                 const subDate = document.getElementById('sub-date');
                 const subDateContainer = document.getElementById('sub-date-container');
                 
-                if (currentUser.hasSubscription) {
-                    subStatus.innerText = 'АКТИВНА';
-                    subStatus.className = 'sub-info active';
-                    subDate.innerText = new Date(currentUser.expiryDate).toLocaleDateString();
-                    subDateContainer.style.display = 'flex';
-                } else {
-                    subStatus.innerText = 'ОТСУТСТВУЕТ';
-                    subStatus.className = 'sub-info inactive';
-                    subDateContainer.style.display = 'none';
+                if (subStatus) {
+                    if (currentUser.hasSubscription) {
+                        subStatus.innerText = 'АКТИВНА';
+                        subStatus.className = 'sub-info active';
+                        if (currentUser.expiryDate && subDate && subDateContainer) {
+                            subDate.innerText = new Date(currentUser.expiryDate).toLocaleDateString();
+                            subDateContainer.style.display = 'flex';
+                        }
+                    } else {
+                        subStatus.innerText = 'ОТСУТСТВУЕТ';
+                        subStatus.className = 'sub-info inactive';
+                        if (subDateContainer) subDateContainer.style.display = 'none';
+                    }
                 }
 
-                if (currentUser.role === 'admin') {
-                    document.getElementById('admin-btn').style.display = 'block';
+                if (adminBtn) {
+                    adminBtn.style.display = (currentUser.role === 'admin') ? 'block' : 'none';
                 }
             } else {
+                if (authNav) authNav.style.display = 'block';
+                if (profileNav) profileNav.style.display = 'none';
                 document.getElementById('cabinet-modal').style.display = 'none';
                 document.getElementById('admin-modal').style.display = 'none';
             }
@@ -378,6 +395,7 @@
         async function handleLogin() {
             const loginId = document.getElementById('login-id').value;
             const password = document.getElementById('login-pass').value;
+            const rememberMe = document.getElementById('remember-me').checked;
 
             try {
                 const res = await fetch(`${API_URL}/login`, {
@@ -388,7 +406,13 @@
                 const data = await res.json();
                 if (res.ok) {
                     currentUser = data;
-                    localStorage.setItem('abyss_session', JSON.stringify(data));
+                    if (rememberMe) {
+                        localStorage.setItem('abyss_session', JSON.stringify(data));
+                        sessionStorage.removeItem('abyss_session');
+                    } else {
+                        sessionStorage.setItem('abyss_session', JSON.stringify(data));
+                        localStorage.removeItem('abyss_session');
+                    }
                     closeAuth();
                     updateUI();
                     toggleCabinet();
@@ -411,7 +435,11 @@
                 const data = await res.json();
                 if (res.ok) {
                     currentUser = data;
-                    localStorage.setItem('abyss_session', JSON.stringify(data));
+                    if (localStorage.getItem('abyss_session')) {
+                        localStorage.setItem('abyss_session', JSON.stringify(data));
+                    } else {
+                        sessionStorage.setItem('abyss_session', JSON.stringify(data));
+                    }
                     alert('Ключ успешно активирован!');
                     updateUI();
                 } else {
@@ -478,6 +506,7 @@
 
         function logout() {
             localStorage.removeItem('abyss_session');
+            sessionStorage.removeItem('abyss_session');
             currentUser = null;
             location.reload();
         }
