@@ -188,34 +188,58 @@
     <div id="cabinet-modal" class="modal">
         <div class="modal-content cabinet-modal-content">
             <span class="close" onclick="closeCabinet()">&times;</span>
-            <h2>Личный кабинет</h2>
-            <p class="welcome-text">Добро пожаловать, <span id="user-name-display">Пользователь</span>!</p>
-            
-            <div class="cabinet-info">
-                <div class="info-item">
-                    <span class="label">Статус подписки:</span>
-                    <span id="sub-status" class="sub-info">Загрузка...</span>
-                </div>
-                <div id="sub-date-container" class="info-item" style="display: none;">
-                    <span class="label">Действует до:</span>
-                    <span id="sub-date" class="sub-date">---</span>
-                </div>
-                <div class="info-item">
-                    <span class="label">Ваша почта:</span>
-                    <span id="user-email-display" class="value">---</span>
-                </div>
-            </div>
-
-            <div class="cabinet-actions">
-                <div id="key-activation-area" style="margin-bottom: 1.5rem;">
-                    <div class="input-group" style="margin-bottom: 0.5rem;">
-                        <input type="text" id="activate-key-input" placeholder="Введите ключ активации">
+            <div class="cabinet-layout">
+                <div class="cabinet-left">
+                    <h2>Личный кабинет</h2>
+                    <p class="welcome-text">Добро пожаловать, <span id="user-name-display">Пользователь</span>!</p>
+                    
+                    <div class="cabinet-info">
+                        <div class="info-item">
+                            <span class="label">Статус подписки:</span>
+                            <span id="sub-status" class="sub-info">Загрузка...</span>
+                        </div>
+                        <div id="sub-date-container" class="info-item" style="display: none;">
+                            <span class="label">Действует до:</span>
+                            <span id="sub-date" class="sub-date">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Ваша почта:</span>
+                            <span id="user-email-display" class="value">---</span>
+                        </div>
                     </div>
-                    <button class="btn-primary w-100" onclick="handleActivateKey()">Активировать ключ</button>
+
+                    <div class="cabinet-actions">
+                        <div id="key-activation-area" style="margin-bottom: 1.5rem;">
+                            <div class="input-group" style="margin-bottom: 0.5rem;">
+                                <input type="text" id="activate-key-input" placeholder="Введите ключ активации">
+                            </div>
+                            <button class="btn-primary w-100" onclick="handleActivateKey()">Активировать ключ</button>
+                        </div>
+                        <button id="download-client-btn" class="btn-primary w-100" style="display: none; background: #2a0a4a; border-color: #6000ff; margin-bottom: 1rem;" onclick="downloadClient()">Скачать клиент</button>
+                        <button id="admin-btn" class="btn-primary w-100" style="display: none; background: #1a0a0a; border-color: #400; margin-bottom: 1rem;" onclick="openAdmin()">Админ-панель</button>
+                        <button class="btn-secondary w-100" onclick="logout()">Выйти из аккаунта</button>
+                    </div>
                 </div>
-                <button id="download-client-btn" class="btn-primary w-100" style="display: none; background: #2a0a4a; border-color: #6000ff; margin-bottom: 1rem;" onclick="downloadClient()">Скачать клиент</button>
-                <button id="admin-btn" class="btn-primary w-100" style="display: none; background: #1a0a0a; border-color: #400; margin-bottom: 1rem;" onclick="openAdmin()">Админ-панель</button>
-                <button class="btn-secondary w-100" onclick="logout()">Выйти из аккаунта</button>
+                <div class="cabinet-right">
+                    <h2>Обновления</h2>
+                    <p class="welcome-text">История версий клиента</p>
+                    <div class="updates-list">
+                        <div class="update-item">
+                            <div class="update-header">
+                                <span class="update-version">v2.0.0</span>
+                                <span class="update-date">Сегодня</span>
+                            </div>
+                            <div class="update-notes">
+                                <ul>
+                                    <li>Глобальное обновление клиента</li>
+                                    <li>Новый дизайн интерфейса</li>
+                                    <li>Улучшены обходы анти-читов</li>
+                                    <li>Добавлена поддержка 1.21.4</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
