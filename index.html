@@ -213,6 +213,7 @@
                     </div>
                     <button class="btn-primary w-100" onclick="handleActivateKey()">Активировать ключ</button>
                 </div>
+                <button id="download-client-btn" class="btn-primary w-100" style="display: none; background: #2a0a4a; border-color: #6000ff; margin-bottom: 1rem;" onclick="downloadClient()">Скачать клиент</button>
                 <button id="admin-btn" class="btn-primary w-100" style="display: none; background: #1a0a0a; border-color: #400; margin-bottom: 1rem;" onclick="openAdmin()">Админ-панель</button>
                 <button class="btn-secondary w-100" onclick="logout()">Выйти из аккаунта</button>
             </div>
@@ -365,6 +366,7 @@
                 const subStatus = document.getElementById('sub-status');
                 const subDate = document.getElementById('sub-date');
                 const subDateContainer = document.getElementById('sub-date-container');
+                const downloadBtn = document.getElementById('download-client-btn');
                 
                 if (subStatus) {
                     if (currentUser.hasSubscription) {
@@ -374,10 +376,12 @@
                             subDate.innerText = new Date(currentUser.expiryDate).toLocaleDateString();
                             subDateContainer.style.display = 'flex';
                         }
+                        if (downloadBtn) downloadBtn.style.display = 'block';
                     } else {
                         subStatus.innerText = 'ОТСУТСТВУЕТ';
                         subStatus.className = 'sub-info inactive';
                         if (subDateContainer) subDateContainer.style.display = 'none';
+                        if (downloadBtn) downloadBtn.style.display = 'none';
                     }
                 }
 
@@ -521,6 +525,16 @@
         function closeAuth() { document.getElementById('auth-modal').style.display = 'none'; }
         function closeCabinet() { document.getElementById('cabinet-modal').style.display = 'none'; }
         function closeAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
+
+        function downloadClient() {
+            if (currentUser && currentUser.hasSubscription) {
+                // Создаем безопасную ссылку, которая проверит подписку на сервере
+                const url = `${API_URL}/download/${encodeURIComponent(currentUser.username)}/${encodeURIComponent(currentUser.password)}`;
+                window.location.href = url;
+            } else {
+                alert("У вас нет активной подписки!");
+            }
+        }
 
         function openPayment(planName, price, url) {
             document.getElementById('payment-plan-name').innerText = planName;
