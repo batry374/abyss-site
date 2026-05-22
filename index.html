@@ -380,6 +380,7 @@
         // API Config
         const API_URL = 'https://abyss-backend-tk1j.onrender.com/api';
         let currentUser = JSON.parse(localStorage.getItem('abyss_session') || sessionStorage.getItem('abyss_session'));
+        let userPassword = localStorage.getItem('abyss_password') || sessionStorage.getItem('abyss_password'); // Сохраняем пароль отдельно для скачивания
 
         async function updateUI() {
             const authNav = document.getElementById('auth-nav');
@@ -464,12 +465,18 @@
                 const data = await res.json();
                 if (res.ok) {
                     currentUser = data;
+                    userPassword = password; // Сохраняем пароль для скачивания
+                    
                     if (rememberMe) {
                         localStorage.setItem('abyss_session', JSON.stringify(data));
+                        localStorage.setItem('abyss_password', password);
                         sessionStorage.removeItem('abyss_session');
+                        sessionStorage.removeItem('abyss_password');
                     } else {
                         sessionStorage.setItem('abyss_session', JSON.stringify(data));
+                        sessionStorage.setItem('abyss_password', password);
                         localStorage.removeItem('abyss_session');
+                        localStorage.removeItem('abyss_password');
                     }
                     closeAuth();
                     updateUI();
@@ -559,10 +566,12 @@
         function closeAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
 
         function downloadClient() {
-            if (currentUser && currentUser.hasSubscription) {
+            if (currentUser && currentUser.hasSubscription && userPassword) {
                 // Создаем безопасную ссылку, которая проверит подписку на сервере
-                const url = `${API_URL}/download/${encodeURIComponent(currentUser.username)}/${encodeURIComponent(currentUser.password)}`;
+                const url = `${API_URL}/download/${encodeURIComponent(currentUser.username)}/${encodeURIComponent(userPassword)}`;
                 window.location.href = url;
+            } else if (!userPassword) {
+                alert("Пожалуйста, перелогиньтесь для скачивания клиента");
             } else {
                 alert("У вас нет активной подписки!");
             }
@@ -586,8 +595,11 @@
 
         function logout() {
             localStorage.removeItem('abyss_session');
+            localStorage.removeItem('abyss_password');
             sessionStorage.removeItem('abyss_session');
+            sessionStorage.removeItem('abyss_password');
             currentUser = null;
+            userPassword = null;
             location.reload();
         }
 
