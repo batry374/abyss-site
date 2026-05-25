@@ -524,7 +524,7 @@
                 await fetch(`${API_URL}/admin/gen-key`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ adminUser: currentUser.username, days })
+                    body: JSON.stringify({ adminUser: currentUser.username, adminPassword: userPassword, days })
                 });
                 await renderAdminKeys();
             } catch (e) { alert('Ошибка'); }
@@ -533,7 +533,9 @@
 
         async function renderAdminKeys() {
             try {
-                const res = await fetch(`${API_URL}/admin/keys/${currentUser.username}`);
+                const res = await fetch(`${API_URL}/admin/keys/${currentUser.username}`, {
+                    headers: { 'X-Admin-Password': userPassword }
+                });
                 const keys = await res.json();
                 const list = document.getElementById('admin-keys-list');
                 list.innerHTML = keys.map(k => `
