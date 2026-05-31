@@ -337,8 +337,9 @@ section {
 
 /* ===== PRICING ===== */
 .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
     max-width: 100%;
     margin: 0 auto;
@@ -355,6 +356,8 @@ section {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    width: 340px;
+    max-width: 100%;
 }
 
 .price-card:hover {
@@ -798,9 +801,12 @@ footer {
         font-size: 2rem;
     }
 
-    .features-grid,
-    .pricing-grid {
+    .features-grid {
         grid-template-columns: 1fr;
+    }
+
+    .price-card {
+        width: 100%;
     }
 
     .cabinet-layout {
