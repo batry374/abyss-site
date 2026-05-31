@@ -623,6 +623,17 @@ section {
     color: #ff6464;
 }
 
+.hwid-bound {
+    font-family: 'Consolas', 'Courier New', monospace;
+    color: #00ff88;
+    cursor: help;
+}
+
+.hwid-unbound {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
 .cabinet-actions {
     display: flex;
     flex-direction: column;

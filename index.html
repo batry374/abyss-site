@@ -83,7 +83,7 @@
                 <div class="price-card" data-aos="fade-right">
                     <div class="price-header">
                         <h3>30 Дней</h3>
-                        <div class="price">99₽<span>/мес</span></div>
+                        <div class="price">249₽<span>/мес</span></div>
                     </div>
                     <ul class="price-features">
                         <li>Доступ на 30 дней</li>
@@ -92,13 +92,13 @@
                         <li>Регулярные обновления</li>
                         <li>Приоритетная поддержка 24/7</li>
                     </ul>
-                    <button class="btn-buy" onclick="openPayment('30 Дней', '99₽', 'https://funpay.com/lots/offer?id=69078043')">Выбрать</button>
+                    <button class="btn-buy" onclick="openPayment('30 Дней', '249₽', 'https://funpay.com/lots/offer?id=69078043')">Выбрать</button>
                 </div>
                 <div class="price-card featured" data-aos="fade-up">
                     <div class="badge">Выгодно</div>
                     <div class="price-header">
                         <h3>90 Дней</h3>
-                        <div class="price">199₽<span>/3 мес</span></div>
+                        <div class="price">449₽<span>/3 мес</span></div>
                     </div>
                     <ul class="price-features">
                         <li>Доступ на 90 дней</li>
@@ -107,12 +107,12 @@
                         <li>Регулярные обновления</li>
                         <li>Приоритетная поддержка 24/7</li>
                     </ul>
-                    <button class="btn-buy" onclick="openPayment('90 Дней', '199₽', 'https://funpay.com/lots/offer?id=69262501')">Выбрать</button>
+                    <button class="btn-buy" onclick="openPayment('90 Дней', '449₽', 'https://funpay.com/lots/offer?id=69262501')">Выбрать</button>
                 </div>
                 <div class="price-card" data-aos="fade-left">
                     <div class="price-header">
                         <h3>Lifetime</h3>
-                        <div class="price">399₽<span>/навсегда</span></div>
+                        <div class="price">649₽<span>/навсегда</span></div>
                     </div>
                     <ul class="price-features">
                         <li>Вечный доступ навсегда</li>
@@ -121,7 +121,7 @@
                         <li>Регулярные обновления</li>
                         <li>Приоритетная поддержка 24/7</li>
                     </ul>
-                    <button class="btn-buy" onclick="openPayment('Lifetime', '399₽', 'https://funpay.com/lots/offer?id=69262568')">Выбрать</button>
+                    <button class="btn-buy" onclick="openPayment('Lifetime', '649₽', 'https://funpay.com/lots/offer?id=69262568')">Выбрать</button>
                 </div>
             </div>
         </section>
@@ -207,6 +207,10 @@
                         <div class="info-item">
                             <span class="label">Ваша почта:</span>
                             <span id="user-email-display" class="value">---</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">HWID:</span>
+                            <span id="user-hwid-display" class="value" title="Привязывается при первом входе через лаунчер">---</span>
                         </div>
                     </div>
 
@@ -338,6 +342,21 @@
 
                 document.querySelectorAll('#user-name-display').forEach(el => el.innerText = currentUser.username);
                 document.querySelectorAll('#user-email-display').forEach(el => el.innerText = currentUser.email);
+
+                const hwidEl = document.getElementById('user-hwid-display');
+                if (hwidEl) {
+                    if (currentUser.hwid) {
+                        const h = String(currentUser.hwid);
+                        const masked = h.length > 16 ? (h.substring(0, 8) + '…' + h.substring(h.length - 8)) : h;
+                        hwidEl.innerText = masked;
+                        hwidEl.title = 'Привязан: ' + h;
+                        hwidEl.className = 'value hwid-bound';
+                    } else {
+                        hwidEl.innerText = 'не привязан';
+                        hwidEl.title = 'Привязывается при первом входе через лаунчер';
+                        hwidEl.className = 'value hwid-unbound';
+                    }
+                }
                 
                 const subStatus = document.getElementById('sub-status');
                 const subDate = document.getElementById('sub-date');
